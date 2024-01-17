@@ -8,7 +8,7 @@ function SearchResult({ movies }: Props) {
   return (
     <div>
       <p>SearchResult</p>
-      {movies?.map((movie) => <div>{movie.description}</div>)}
+      {movies?.map((movie) => <div key={movie.id}>{movie.title}</div>)}
     </div>
   );
 }
