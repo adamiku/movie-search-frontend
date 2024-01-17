@@ -8,7 +8,7 @@ import { FetchState, MovieResponse } from './models';
 const API_URL = 'http://localhost:3000/movies';
 
 function App() {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const initialQuery = searchParams.get('query') ?? '';
   const currentPage = Number(searchParams.get('page')) || 1;
 
@@ -34,7 +34,12 @@ function App() {
               : 'Data was served from Movie DB'}
           </span>
           <SearchResult movies={data.results} />
-          <Pagination totalPages={data.total_pages} currentPage={currentPage} />
+          <Pagination
+            totalPages={data.total_pages}
+            currentPage={currentPage}
+            setSearchParams={setSearchParams}
+            searchParams={searchParams}
+          />
         </>
       )}
     </main>
