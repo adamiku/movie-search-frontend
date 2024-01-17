@@ -28,6 +28,11 @@ function App() {
       )}
       {status === FetchState.SUCCESS && data && (
         <>
+          <span>
+            {data.cached
+              ? 'Data was served from cache'
+              : 'Data was served from Movie DB'}
+          </span>
           <SearchResult movies={data.results} />
           <Pagination totalPages={data.total_pages} currentPage={currentPage} />
         </>
