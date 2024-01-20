@@ -38,6 +38,7 @@ function useFetch<T>({ url, page, query }: Props) {
           // handle 400,401,..500
           setError({ message: `${response.status} ${response.statusText}` });
           // throw new Error(`${response.status} ${response.statusText}`)
+          return;
         }
         const responseBody = await response.json();
 
