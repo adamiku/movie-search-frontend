@@ -28,17 +28,17 @@ function Pagination({
   };
 
   return (
-    <div className="flex gap-3">
+    <div className="inline-flex justify-center items-center gap-5 p-5">
       <button
+        className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l"
         onClick={() => handlePagination(Direction.PREVIOUS)}
         disabled={currentPage === 1}
       >
-        Previous
+        Prev
       </button>
-      <span>
-        {currentPage} / {totalPages}
-      </span>
+      <span>{`${currentPage} / ${totalPages}`}</span>
       <button
+        className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r"
         onClick={() => handlePagination(Direction.NEXT)}
         disabled={currentPage === totalPages}
       >
