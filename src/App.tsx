@@ -2,6 +2,7 @@ import { useSearchParams } from 'react-router-dom';
 import Pagination from './Pagination';
 import SearchBar from './SearchBar';
 import SearchResult from './SearchResult';
+import { VITE_API_URL } from './constants';
 import useFetch from './hooks/useFetch';
 import { FetchState, MovieResponse } from './models';
 
@@ -12,7 +13,7 @@ function App() {
 
   // TODO make useFetch more generic with the queryparams
   const { data, error, status } = useFetch<MovieResponse>({
-    url: `${import.meta.env.VITE_API_URL}/movies`,
+    url: `${VITE_API_URL}/movies`,
     query: initialQuery,
     page: currentPage
   });
