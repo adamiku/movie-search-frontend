@@ -1,27 +1,27 @@
-import { Movie } from './models';
+import { Movie } from '../../shared/models';
 
 type Props = {
   movies: Movie[];
+  query: string;
 };
 
-function SearchResult({ movies }: Props) {
+function SearchResult({ movies, query }: Props) {
   return (
     <div>
-      <p className="text-gray-700 text-sm font-bold mb-5">SearchResult:</p>
+      <p className="text-gray-700 text-sm font-bold mb-5">
+        Search results for: `{query}`
+      </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {movies.map((movie) => {
           return (
-            <div
-              className="max-w-sm w-full lg:max-w-full lg:flex"
-              key={movie.id}
-            >
+            <div className="w-full lg:max-w-full flex" key={movie.id}>
               {movie.poster_path && (
                 <div
-                  className={`h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden`}
+                  className={`h-auto w-48 flex-none bg-cover rounded-t rounded-l text-center overflow-hidden`}
                   style={{
                     backgroundImage:
                       'url(' +
-                      `https://image.tmdb.org/t/p/w154${movie.poster_path}` +
+                      `https://image.tmdb.org/t/p/w500${movie.poster_path}` +
                       ')'
                   }}
                 ></div>
@@ -31,7 +31,7 @@ function SearchResult({ movies }: Props) {
                   N/A poster
                 </div>
               )}
-              <div className="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+              <div className="border border-gray-400  bg-white rounded-b  p-4 flex flex-col justify-between leading-normal">
                 <div>
                   <div className="text-gray-900 font-bold text-xl mb-2">
                     {movie.title}

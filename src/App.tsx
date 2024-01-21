@@ -1,10 +1,10 @@
 import { useSearchParams } from 'react-router-dom';
-import Pagination from './Pagination';
-import SearchBar from './SearchBar';
-import SearchResult from './SearchResult';
 import { VITE_API_URL } from './constants';
-import useFetch from './hooks/useFetch';
-import { FetchState, MovieResponse } from './models';
+import SearchBar from './features/search/SearchBar';
+import SearchResult from './features/search/SearchResult';
+import useFetch from './shared/hooks/useFetch';
+import { FetchState, MovieResponse } from './shared/models';
+import Pagination from './shared/ui/Pagination';
 
 function App() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -45,7 +45,7 @@ function App() {
                 : 'Data was served from Movie DB'}
             </p>
           </div>
-          <SearchResult movies={data.results} />
+          <SearchResult movies={data.results} query={initialQuery} />
           {data.total_pages > 1 && (
             <Pagination
               totalPages={data.total_pages}

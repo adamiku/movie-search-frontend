@@ -1,14 +1,14 @@
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 import App from '../App';
-import useFetch from '../hooks/useFetch';
-import { FetchState } from '../models';
+import useFetch from '../shared/hooks/useFetch';
+import { FetchState } from '../shared/models';
 
 jest.mock('../constants', () => ({
   VITE_API_URL: 'http://localhost:3000'
 }));
 
-jest.mock('../hooks/useFetch', () => ({
+jest.mock('../shared/hooks/useFetch', () => ({
   default: jest
     .fn()
     .mockReturnValue({ data: [], error: undefined, status: undefined })
@@ -23,7 +23,7 @@ jest.mock('react-router-dom', () => ({
     ])
 }));
 
-jest.mock('../Pagination', () => ({
+jest.mock('../shared/ui/Pagination', () => ({
   default: () => <div data-testid="pagination-component">Mock Pagination</div>
 }));
 
