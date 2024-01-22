@@ -5,6 +5,7 @@ import SearchResult from './features/search/SearchResult';
 import useFetch from './shared/hooks/useFetch';
 import { FetchState, MovieResponse } from './shared/models';
 import Pagination from './shared/ui/Pagination';
+import Skeleton from './shared/ui/Skeleton';
 
 function App() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -21,7 +22,16 @@ function App() {
   return (
     <main className="h-screen w-screen max-w-7xl m-auto p-5 flex flex-col gap-5">
       <SearchBar />
-      {status === FetchState.PENDING && <div>Fetching data...</div>}
+      {status === FetchState.PENDING && (
+        <>
+          <div className="h-4 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[480px] mb-2.5"></div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {Array.from({ length: 6 }, (_, index) => index).map((item) => (
+              <Skeleton key={item} />
+            ))}
+          </div>
+        </>
+      )}
       {status === FetchState.ERROR && (
         <div>Something went wrong {error?.message}</div>
       )}

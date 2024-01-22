@@ -27,6 +27,10 @@ jest.mock('../shared/ui/Pagination', () => ({
   default: () => <div data-testid="pagination-component">Mock Pagination</div>
 }));
 
+jest.mock('../shared/ui/Skeleton', () => ({
+  default: () => <div data-testid="skeleton-component">Mock Skeleton</div>
+}));
+
 test('Renders the main page', () => {
   render(<App />);
   expect(true).toBeTruthy();
@@ -35,8 +39,8 @@ test('Renders the main page', () => {
 test('renders loading message in PENDING state', () => {
   (useFetch as jest.Mock).mockReturnValue({ status: FetchState.PENDING });
 
-  const { getByText } = render(<App />);
-  expect(getByText('Fetching data...')).toBeInTheDocument();
+  const { getAllByTestId } = render(<App />);
+  expect(getAllByTestId('skeleton-component')).toHaveLength(6);
 });
 
 test('renders error message in ERROR state', () => {
